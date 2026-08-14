@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Add Employee - BridgeSoft</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+        }
+
+        .navbar {
+            height: 70px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 70px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .back {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 650px;
+            margin: 50px auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        .form-box {
+            background: white;
+            padding: 35px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+        }
+
+        .error {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .cancel {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .save {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 11px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .cancel:hover {
+            background: #5a6268;
+        }
+
+        .save:hover {
+            background: #0056b3;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 40px;
+            padding: 25px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<nav class="navbar">
+
+    <div class="logo">
+        BridgeSoft
+    </div>
+
+    <a href="/employee-list" class="back">
+        Employee List
+    </a>
+
+</nav>
+
+
+<div class="container">
+
+    <h1>Add Employee</h1>
+
+    <div class="form-box">
+
+        <form id="employeeForm">
+
+            <div class="form-group">
+
+                <label for="name">Name</label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter employee name"
+                    required>
+
+                <div id="nameError" class="error">
+                    Please enter a valid name.
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="doj">
+                    Date of Joining
+                </label>
+
+                <input
+                    type="date"
+                    id="doj"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="department">
+                    Department
+                </label>
+
+                <input
+                    type="text"
+                    id="department"
+                    placeholder="Enter department"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="designation">
+                    Designation
+                </label>
+
+                <input
+                    type="text"
+                    id="designation"
+                    placeholder="Enter designation"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Enter email address"
+                    required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="salary">
+                    Salary
+                </label>
+
+                <input
+                    type="number"
+                    id="salary"
+                    placeholder="Enter salary"
+                    min="1"
+                    required>
+
+            </div>
+
+
+            <div class="buttons">
+
+                <button
+                    type="button"
+                    class="cancel"
+                    onclick="window.location.href='/employee-list'">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="save">
+
+                    Save
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<footer>
+    © All Right Reserved - 2026
+</footer>
+
+
+<script>
+
+document
+    .getElementById("employeeForm")
+    .addEventListener("submit", async function(event) {
+
+        event.preventDefault();
+
+        const name =
+            document.getElementById("name").value.trim();
+
+        const doj =
+            document.getElementById("doj").value;
+
+        const department =
+            document.getElementById("department").value.trim();
+
+        const designation =
+            document.getElementById("designation").value.trim();
+
+        const email =
+            document.getElementById("email").value.trim();
+
+        const salary =
+            Number(document.getElementById("salary").value);
+
+
+        const namePattern = /^[A-Za-z ]+$/;
+
+        if (!namePattern.test(name)) {
+
+            document.getElementById("nameError")
+                .style.display = "block";
+
+            return;
+        }
+
+
+        const employee = {
+
+            name: name,
+            doj: doj,
+            department: department,
+            designation: designation,
+            email: email,
+            salary: salary
+
+        };
+
+
+        try {
+
+            const response = await fetch("/employees", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(employee)
+
+            });
+
+
+            if (response.ok) {
+
+                alert("Employee added successfully!");
+
+                window.location.href =
+                    "/employee-list";
+
+            } else {
+
+                alert(
+                    "Failed to add employee. Status: "
+                    + response.status
+                );
+
+            }
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Something went wrong.");
+
+        }
+
+    });
+
+</script>
+
+</body>
+
+</html>
